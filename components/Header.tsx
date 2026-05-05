@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useState } from "react";
 import { getAllCategories } from "@/lib/categories";
+import { LogoIcon, getCategoryIcon } from "./Icons";
 
 const categories = getAllCategories();
 
@@ -14,8 +15,8 @@ export default function Header() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
-          <Link href="/" className="flex items-center space-x-2">
-            <span className="text-2xl">🚀</span>
+          <Link href="/" className="flex items-center space-x-2.5">
+            <LogoIcon />
             <span className="font-bold text-xl neon-text">AI趋势观察</span>
           </Link>
 
@@ -35,16 +36,19 @@ export default function Header() {
               </button>
               <div className="absolute left-0 mt-2 w-56 glass-dropdown rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
                 <div className="py-2">
-                  {categories.map((cat) => (
-                    <Link
-                      key={cat.id}
-                      href="/"
-                      className="block px-4 py-2 text-gray-300 hover:text-cyan-400 hover:bg-white/5 transition-colors"
-                    >
-                      <span className="mr-2">{cat.icon}</span>
-                      {cat.name}
-                    </Link>
-                  ))}
+                  {categories.map((cat) => {
+                    const Icon = getCategoryIcon(cat.id);
+                    return (
+                      <Link
+                        key={cat.id}
+                        href="/"
+                        className="flex items-center px-4 py-2 text-gray-300 hover:text-cyan-400 hover:bg-white/5 transition-colors"
+                      >
+                        <Icon size={18} className="mr-2.5 flex-shrink-0" />
+                        {cat.name}
+                      </Link>
+                    );
+                  })}
                 </div>
               </div>
             </div>
@@ -82,17 +86,20 @@ export default function Header() {
             </Link>
             <div className="border-t border-white/10 pt-2">
               <p className="text-xs text-gray-500 uppercase tracking-wider mb-2">专栏</p>
-              {categories.map((cat) => (
-                <Link
-                  key={cat.id}
-                  href="/"
-                  className="block py-1.5 text-gray-300 hover:text-cyan-400"
-                  onClick={() => setMobileMenuOpen(false)}
-                >
-                  <span className="mr-2">{cat.icon}</span>
-                  {cat.name}
-                </Link>
-              ))}
+              {categories.map((cat) => {
+                const Icon = getCategoryIcon(cat.id);
+                return (
+                  <Link
+                    key={cat.id}
+                    href="/"
+                    className="flex items-center py-1.5 text-gray-300 hover:text-cyan-400"
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    <Icon size={18} className="mr-2.5 flex-shrink-0" />
+                    {cat.name}
+                  </Link>
+                );
+              })}
             </div>
             <div className="border-t border-white/10 pt-2">
               <Link href="/about" className="block py-2 text-gray-300 hover:text-cyan-400 font-medium" onClick={() => setMobileMenuOpen(false)}>

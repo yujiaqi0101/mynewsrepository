@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Article } from "@/lib/articles";
 import { Category } from "@/lib/categories";
+import { getCategoryIcon } from "./Icons";
 
 interface ArticleCardProps {
   article: Article;
@@ -8,6 +9,8 @@ interface ArticleCardProps {
 }
 
 export default function ArticleCard({ article, category }: ArticleCardProps) {
+  const CategoryIcon = category ? getCategoryIcon(category.id) : null;
+
   return (
     <Link href={`/blog/${article.slug}`} className="block group">
       <article className="glass-card overflow-hidden hover:-translate-y-1 transition-all duration-300">
@@ -15,9 +18,10 @@ export default function ArticleCard({ article, category }: ArticleCardProps) {
         <div className="h-1 bg-gradient-to-r from-cyan-500 to-purple-500" />
         <div className="p-6">
           {/* 分类标签 */}
-          {category && (
+          {category && CategoryIcon && (
             <span className="neon-tag inline-flex items-center mb-3">
-              {category.icon} {category.name}
+              <CategoryIcon size={14} className="mr-1.5" />
+              {category.name}
             </span>
           )}
 
