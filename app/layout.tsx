@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
-import Script from "next/script";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import { ADSENSE_CLIENT_ID, isAdEnabled } from "@/lib/adsense";
+import { isAdEnabled, ADSENSE_CLIENT_ID } from "@/lib/adsense";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -21,6 +20,7 @@ export default function RootLayout({
     <html lang="zh-CN">
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="theme-color" content="#0a0a1a" />
         {isAdEnabled && (
           <script
             async
@@ -29,7 +29,12 @@ export default function RootLayout({
           />
         )}
       </head>
-      <body className="bg-gray-50 text-gray-900 antialiased" style={{ fontFamily: 'system-ui, -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif' }}>
+      <body
+        className="antialiased"
+        style={{
+          fontFamily: 'Inter, system-ui, -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif',
+        }}
+      >
         <Header />
         <main className="min-h-screen">{children}</main>
         <Footer />

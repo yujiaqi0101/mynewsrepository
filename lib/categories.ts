@@ -36,11 +36,11 @@ export const categories: Category[] = [
     slug: "news",
   },
   {
-    id: "tools",
-    name: "开发者工具箱",
-    icon: "🛠️",
-    description: "AI开发工具与教程，助力开发者高效构建AI应用",
-    slug: "tools",
+    id: "frontier",
+    name: "前沿科技",
+    icon: "🚀",
+    description: "人形机器人、量子计算、脑机接口、核聚变、太空探索等前沿科技突破",
+    slug: "frontier",
   },
   {
     id: "reports",

@@ -22,8 +22,8 @@ export default function AdBanner({ slot = "1234567890", className = "" }: AdBann
 
   if (!isAdEnabled) {
     return (
-      <div className={`flex items-center justify-center bg-gray-100 border-2 border-dashed border-gray-300 rounded-lg text-gray-400 text-sm ${className}`}>
-        <span>广告位 (728×90)</span>
+      <div className={`ad-placeholder flex items-center justify-center text-sm ${className}`}>
+        <span>广告位 (728&times;90)</span>
       </div>
     );
   }

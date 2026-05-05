@@ -38,11 +38,11 @@ export default async function BlogPage({ params }: BlogPageProps) {
   const category = getCategoryById(article.categoryId);
 
   return (
-    <div className="bg-gray-50">
+    <div>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* 面包屑导航 */}
         <nav className="mb-6 text-sm text-gray-500">
-          <Link href="/" className="hover:text-blue-600">首页</Link>
+          <Link href="/" className="text-cyan-400 hover:text-cyan-300">首页</Link>
           <span className="mx-2">/</span>
           {category && (
             <>
@@ -50,7 +50,7 @@ export default async function BlogPage({ params }: BlogPageProps) {
               <span className="mx-2">/</span>
             </>
           )}
-          <span className="text-gray-900">{article.title}</span>
+          <span className="text-gray-100">{article.title}</span>
         </nav>
 
         <div className="flex flex-col lg:flex-row gap-8">
@@ -62,23 +62,23 @@ export default async function BlogPage({ params }: BlogPageProps) {
             </div>
 
             {/* 文章头部 */}
-            <header className="bg-white rounded-xl shadow-sm border border-gray-100 p-8 mb-6">
+            <header className="glass-card p-8 mb-6">
               {category && (
-                <span className="inline-flex items-center text-sm font-medium text-blue-600 bg-blue-50 px-3 py-1 rounded-full mb-4">
+                <span className="inline-flex items-center text-sm font-medium text-cyan-400 bg-cyan-500/10 px-3 py-1 rounded-full mb-4">
                   {category.icon} {category.name}
                 </span>
               )}
-              <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4 leading-tight">
+              <h1 className="text-3xl md:text-4xl font-bold text-gray-100 mb-4 leading-tight">
                 {article.title}
               </h1>
               <div className="flex items-center space-x-4 text-sm text-gray-500">
-                <span className="font-medium text-gray-700">{article.author}</span>
+                <span className="font-medium text-gray-400">{article.author}</span>
                 <span>·</span>
                 <span>{article.date}</span>
               </div>
               <div className="flex flex-wrap gap-2 mt-4">
                 {article.tags.map((tag) => (
-                  <span key={tag} className="bg-gray-100 text-gray-600 px-3 py-1 rounded-full text-sm">
+                  <span key={tag} className="neon-tag">
                     #{tag}
                   </span>
                 ))}
@@ -86,8 +86,8 @@ export default async function BlogPage({ params }: BlogPageProps) {
             </header>
 
             {/* 文章内容 */}
-            <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-8 mb-6">
-              <ArticleContent slug={article.slug} />
+            <div className="glass-card p-8 mb-6">
+              <ArticleContent slug={article.slug} categoryId={article.categoryId} />
             </div>
 
             {/* 文中广告 */}
@@ -108,8 +108,8 @@ export default async function BlogPage({ params }: BlogPageProps) {
             <AdSidebar slot="sidebar-article-2" />
 
             {/* 相关推荐 */}
-            <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
-              <h3 className="font-bold text-gray-900 mb-4">📌 更多文章</h3>
+            <div className="glass-card p-6">
+              <h3 className="font-bold text-gray-100 mb-4">📌 更多文章</h3>
               <p className="text-sm text-gray-500">更多精彩内容即将上线，敬请期待！</p>
             </div>
           </aside>

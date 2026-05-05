@@ -1,26 +1,141 @@
 @import "tailwindcss";
 
-/* 文章排版样式 (prose 风格) */
+/* ===== 深空未来主义主题 ===== */
+
+/* 深色背景 + 网格纹理 */
+body {
+  background-color: #0a0a1a;
+  background-image:
+    linear-gradient(rgba(34, 211, 238, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(34, 211, 238, 0.03) 1px, transparent 1px);
+  background-size: 60px 60px;
+  color: #f3f4f6;
+}
+
+/* 玻璃拟态卡片 */
+.glass-card {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 1rem;
+}
+
+.glass-card:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(34, 211, 238, 0.3);
+  box-shadow: 0 0 30px rgba(34, 211, 238, 0.1);
+}
+
+/* 霓虹发光效果 */
+.neon-glow {
+  box-shadow: 0 0 20px rgba(34, 211, 238, 0.3), 0 0 40px rgba(34, 211, 238, 0.1);
+}
+
+.neon-glow-purple {
+  box-shadow: 0 0 20px rgba(168, 85, 247, 0.3), 0 0 40px rgba(168, 85, 247, 0.1);
+}
+
+/* 霓虹渐变文字 */
+.neon-text {
+  background: linear-gradient(135deg, #22d3ee, #3b82f6, #a855f7);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.neon-text-cyan {
+  background: linear-gradient(135deg, #22d3ee, #06b6d4);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* 渐变边框 */
+.gradient-border {
+  position: relative;
+}
+
+.gradient-border::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(135deg, rgba(34, 211, 238, 0.5), rgba(168, 85, 247, 0.5), rgba(236, 72, 153, 0.5));
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+/* 极光背景 */
+.aurora-bg {
+  background: linear-gradient(135deg, #0e7490 0%, #1d4ed8 40%, #7c3aed 70%, #db2777 100%);
+}
+
+/* 深色玻璃导航 */
+.glass-nav {
+  background: rgba(10, 10, 26, 0.8);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* 深色玻璃下拉菜单 */
+.glass-dropdown {
+  background: rgba(15, 15, 35, 0.95);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* 霓虹标签 */
+.neon-tag {
+  background: rgba(34, 211, 238, 0.1);
+  color: #22d3ee;
+  border: 1px solid rgba(34, 211, 238, 0.2);
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+}
+
+/* 占位卡片（即将上线） */
+.placeholder-card {
+  background: rgba(255, 255, 255, 0.02);
+  border: 2px dashed rgba(255, 255, 255, 0.1);
+  border-radius: 1rem;
+}
+
+/* 深色广告占位 */
+.ad-placeholder {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px dashed rgba(255, 255, 255, 0.1);
+  border-radius: 0.5rem;
+  color: rgba(255, 255, 255, 0.2);
+}
+
+/* ===== 文章排版样式 (深色主题) ===== */
 .prose h2 {
   font-size: 1.5rem;
   font-weight: 700;
-  color: #111827;
+  color: #e5e7eb;
   margin-top: 2rem;
   margin-bottom: 1rem;
   padding-bottom: 0.5rem;
-  border-bottom: 2px solid #e5e7eb;
+  border-bottom: 2px solid rgba(34, 211, 238, 0.3);
 }
 
 .prose h3 {
   font-size: 1.25rem;
   font-weight: 600;
-  color: #1f2937;
+  color: #d1d5db;
   margin-top: 1.5rem;
   margin-bottom: 0.75rem;
 }
 
 .prose p {
-  color: #374151;
+  color: #9ca3af;
   line-height: 1.8;
   margin-bottom: 1rem;
 }
@@ -32,21 +147,100 @@
 }
 
 .prose ul li {
-  color: #374151;
+  color: #9ca3af;
+  line-height: 1.8;
+  margin-bottom: 0.5rem;
+}
+
+.prose ol {
+  list-style-type: decimal;
+  padding-left: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.prose ol li {
+  color: #9ca3af;
   line-height: 1.8;
   margin-bottom: 0.5rem;
 }
 
 .prose strong {
-  color: #111827;
+  color: #e5e7eb;
   font-weight: 600;
 }
 
 .prose a {
-  color: #2563eb;
+  color: #22d3ee;
   text-decoration: underline;
+  text-underline-offset: 2px;
 }
 
 .prose a:hover {
-  color: #1d4ed8;
+  color: #67e8f9;
+}
+
+.prose blockquote {
+  border-left: 3px solid rgba(34, 211, 238, 0.5);
+  padding-left: 1rem;
+  margin: 1rem 0;
+  color: #9ca3af;
+  font-style: italic;
+}
+
+.prose code {
+  background: rgba(34, 211, 238, 0.1);
+  color: #22d3ee;
+  padding: 0.125rem 0.375rem;
+  border-radius: 0.25rem;
+  font-size: 0.875rem;
+}
+
+.prose pre {
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 0.5rem;
+  padding: 1rem;
+  overflow-x: auto;
+  margin: 1rem 0;
+}
+
+.prose pre code {
+  background: none;
+  padding: 0;
+  color: #d1d5db;
+}
+
+.prose img {
+  border-radius: 0.75rem;
+  margin: 1.5rem 0;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.prose hr {
+  border-color: rgba(255, 255, 255, 0.1);
+  margin: 2rem 0;
+}
+
+/* 滚动条样式 */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0a0a1a;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(34, 211, 238, 0.3);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(34, 211, 238, 0.5);
+}
+
+/* 选中文字颜色 */
+::selection {
+  background: rgba(34, 211, 238, 0.3);
+  color: #fff;
 }

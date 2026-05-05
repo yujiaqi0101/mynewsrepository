@@ -1,71 +1,47 @@
-export default function ArticleContent({ slug }: { slug: string }) {
-  if (slug === "ai-trends-2025-2026") {
-    return <AI2025Article />;
-  }
-  return <p>文章内容加载中...</p>;
+"use client";
+
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
+import { useEffect, useState } from "react";
+
+interface ArticleContentProps {
+  slug: string;
+  categoryId: string;
 }
 
-function AI2025Article() {
+export default function ArticleContent({ slug, categoryId }: ArticleContentProps) {
+  const [content, setContent] = useState<string>("");
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetch(`/content/${categoryId}/${slug}.md`)
+      .then((res) => {
+        if (!res.ok) throw new Error("Article not found");
+        return res.text();
+      })
+      .then((text) => {
+        setContent(text);
+        setLoading(false);
+      })
+      .catch(() => {
+        setContent("文章内容加载失败，请稍后再试。");
+        setLoading(false);
+      });
+  }, [slug, categoryId]);
+
+  if (loading) {
+    return (
+      <div className="flex items-center justify-center py-20">
+        <div className="text-gray-400">加载中...</div>
+      </div>
+    );
+  }
+
   return (
     <div className="prose prose-lg max-w-none">
-      <h2>引言：AI的范式转移之年</h2>
-      <p>
-        2025-2026年，人工智能行业正经历一场深刻的范式转移。如果说2023年是"大模型元年"，2024年是"应用探索年"，那么2025-2026年则是AI从"技术突破"走向"应用落地"的关键转折期。推理能力的突破、智能体的爆发、多模态的成熟，以及国产大模型的集体崛起，共同构成了这一时期最引人注目的技术图景。
-      </p>
-
-      <h2>一、推理模型革命：DeepSeek R1 打破规模神话</h2>
-      <p>
-        2025年1月，中国AI公司DeepSeek发布了R1推理模型，以约600万美元的训练成本，实现了与OpenAI o1相当的推理性能。这一成果彻底打破了"只有砸钱才能训练顶级模型"的行业迷思，证明了算法创新和训练效率的提升同样能够带来质的飞跃。
-      </p>
-      <p>
-        2026年4月，DeepSeek进一步发布了V4模型并开源。V4在编程、世界知识和逻辑推理方面表现优异，标志着国产大模型在综合能力上已经达到全球第一梯队水平。更重要的是，DeepSeek的全栈国产化方案——从芯片到框架再到模型——为整个行业提供了可复制的成功路径。
-      </p>
-
-      <h2>二、AI Agent：2026年的爆发元年</h2>
-      <p>
-        如果说大模型是AI的"大脑"，那么AI Agent就是让这个大脑能够"动手"的关键。2026年被广泛认为是"AI Agent爆发元年"。从简单的对话助手到能够自主规划、执行复杂任务的智能体，AI Agent正在从概念走向现实。
-      </p>
-      <p>
-        MCP（Model Context Protocol）等标准化协议的出现，使Agent能够更高效地与外部工具和数据进行交互。Agent-to-Agent（A2A）通信成为新的技术热点——多个Agent之间的协作与分工，正在催生全新的应用场景。从软件开发中的"AI程序员团队"，到企业运营中的"AI客服+AI销售+AI分析师"协作链，Agent正在重新定义"自动化"的边界。
-      </p>
-
-      <h2>三、多模态AI走向成熟</h2>
-      <p>
-        GPT-5的发布标志着多模态AI进入了一个新的成熟阶段。不同于早期"文本模型+图像插件"的拼接方案，GPT-5实现了原生多模态理解——文本、图像、音频、视频在同一个模型中统一处理，无需中间转换。
-      </p>
-      <p>
-        在用户体验层面，首Token延迟降至100-150毫秒，支持实时语音对话，让AI交互从"打字聊天"进化到"自然对话"。多模态能力的成熟正在加速AI在医疗影像、自动驾驶、创意设计、视频生成等领域的落地应用。
-      </p>
-
-      <h2>四、国产大模型：从追赶到并跑</h2>
-      <p>
-        2025-2026年，国产大模型迎来了集体爆发。DeepSeek V4的全栈国产化方案、Kimi K2.6的多Agent协同能力、通义千问（Qwen）生态的持续整合（Qwen 3.5-397B参数量达397B），以及智谱、百川、月之暗面等公司的持续创新，共同推动中国AI从"追赶者"转变为"并跑者"，在部分领域甚至实现了"领跑"。
-      </p>
-      <p>
-        值得关注的是，国产大模型不仅在技术能力上快速追赶，在应用场景的本土化适配方面也展现出独特优势。中文理解、中国文化语境、国内行业需求等方面的深耕，使国产模型在特定领域已经超越了国际竞品。
-      </p>
-
-      <h2>五、技术路线的根本转变</h2>
-      <p>
-        2025-2026年的另一个重要趋势是AI技术路线的根本性转变。行业重心正从"训练时把模型做大"转向"运行时让模型用得更好"。具体体现在：
-      </p>
-      <ul>
-        <li><strong>强化学习大规模引入</strong>：通过RLHF、RLAIF等技术，让模型在推理时进行"思考"，而非仅仅依赖训练时学到的模式。</li>
-        <li><strong>测试时计算（Test-time Compute）</strong>：在推理阶段投入更多计算资源，让模型能够"想得更深"，从而解决更复杂的问题。</li>
-        <li><strong>记忆与工具调用</strong>：长期记忆、外部工具调用和系统编排成为模型的核心能力，而非附加功能。</li>
-        <li><strong>编排层优先</strong>：行业共识正在形成——编排层（Orchestration）比单一模型的智能更重要。如何让多个模型、多个Agent高效协作，成为技术竞争的新焦点。</li>
-      </ul>
-
-      <h2>六、总结与展望</h2>
-      <p>
-        展望未来，AI竞争的重心正在从"模型发布"转向"用户争夺"。谁能提供最好的用户体验、解决最真实的用户需求，谁就能在这场AI竞赛中胜出。垂直化成为新趋势——通用大模型之外，针对医疗、法律、金融、教育等特定领域的专业模型正在快速崛起。
-      </p>
-      <p>
-        开源生态的持续繁荣也为整个行业注入了活力。DeepSeek、Qwen、Llama等开源模型的持续迭代，降低了AI技术的使用门槛，让更多的开发者和企业能够参与到AI应用的创新中来。
-      </p>
-      <p>
-        2025-2026年，AI不再是实验室里的技术演示，而是正在深刻改变每一个行业、每一个人的日常生活。这场变革才刚刚开始。
-      </p>
+      <ReactMarkdown remarkPlugins={[remarkGfm]}>
+        {content}
+      </ReactMarkdown>
     </div>
   );
 }

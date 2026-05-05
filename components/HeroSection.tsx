@@ -8,13 +8,13 @@ export default function HeroSection() {
 
   if (!featured) {
     return (
-      <section className="relative bg-gradient-to-br from-blue-600 via-blue-700 to-indigo-800 text-white py-20 px-4">
+      <section className="relative aurora-bg text-white py-20 px-4">
         <div className="max-w-4xl mx-auto text-center">
-          <h1 className="text-4xl md:text-5xl font-bold mb-6">AI趋势观察</h1>
-          <p className="text-xl md:text-2xl text-blue-100 mb-8">
+          <h1 className="text-4xl md:text-5xl font-bold mb-6 neon-text">AI趋势观察</h1>
+          <p className="text-xl md:text-2xl text-cyan-100/80 mb-8">
             探索人工智能前沿，解读技术变革
           </p>
-          <p className="text-blue-200 max-w-2xl mx-auto">
+          <p className="text-white/70 max-w-2xl mx-auto">
             聚焦大模型、AI Agent、多模态等核心方向，为你带来最专业的AI领域深度内容
           </p>
         </div>
@@ -25,7 +25,7 @@ export default function HeroSection() {
   const category = getCategoryById(featured.categoryId);
 
   return (
-    <section className="relative bg-gradient-to-br from-blue-600 via-blue-700 to-indigo-800 text-white py-16 px-4">
+    <section className="relative aurora-bg text-white py-16 px-4">
       <div className="max-w-7xl mx-auto">
         <div className="max-w-4xl">
           {category && (
@@ -34,21 +34,21 @@ export default function HeroSection() {
             </span>
           )}
           <Link href={`/blog/${featured.slug}`}>
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 hover:text-blue-200 transition-colors leading-tight">
+            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 neon-text hover:opacity-80 transition-opacity leading-tight">
               {featured.title}
             </h1>
           </Link>
-          <p className="text-lg md:text-xl text-blue-100 mb-6 line-clamp-3">
+          <p className="text-lg md:text-xl text-cyan-100/80 mb-6 line-clamp-3">
             {featured.excerpt}
           </p>
-          <div className="flex items-center space-x-4 text-sm text-blue-200">
+          <div className="flex items-center space-x-4 text-sm text-white/70">
             <span>{featured.author}</span>
-            <span>·</span>
+            <span>&middot;</span>
             <span>{featured.date}</span>
-            <span>·</span>
+            <span>&middot;</span>
             <div className="flex space-x-2">
               {featured.tags.slice(0, 3).map((tag) => (
-                <span key={tag} className="bg-white/10 px-2 py-0.5 rounded">
+                <span key={tag} className="neon-tag">
                   {tag}
                 </span>
               ))}
