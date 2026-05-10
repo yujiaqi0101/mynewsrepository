@@ -28,7 +28,7 @@ export default function CategorySection({ category, articles }: CategorySectionP
         </div>
         {hasArticles && (
           <Link
-            href="/"
+            href={`/category/${category.id}`}
             className="text-sm text-cyan-400 hover:text-cyan-300 font-medium whitespace-nowrap"
           >
             查看更多 &rarr;

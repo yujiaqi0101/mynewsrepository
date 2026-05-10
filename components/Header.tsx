@@ -41,7 +41,7 @@ export default function Header() {
                     return (
                       <Link
                         key={cat.id}
-                        href="/"
+                        href={`/category/${cat.id}`}
                         className="flex items-center px-4 py-2 text-gray-300 hover:text-cyan-400 hover:bg-white/5 transition-colors"
                       >
                         <Icon size={18} className="mr-2.5 flex-shrink-0" />
@@ -91,7 +91,7 @@ export default function Header() {
                 return (
                   <Link
                     key={cat.id}
-                    href="/"
+                    href={`/category/${cat.id}`}
                     className="flex items-center py-1.5 text-gray-300 hover:text-cyan-400"
                     onClick={() => setMobileMenuOpen(false)}
                   >
